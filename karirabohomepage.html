@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>カリラボ | 実験するように、自分軸で、生きる。</title>
+  <meta name="description" content="実験するように、自分軸で、生きる。努力・競争・個人主義に疲れた人が自分軸を取り戻す実験場。AI・心理学・体験イベントで、好きなことに集中して楽しく生きるヒントを発信中。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green-deep:    #27500A;
+      --green-main:    #3B6D11;
+      --green-mid:     #639922;
+      --green-light:   #97C459;
+      --green-pale:    #C0DD97;
+      --green-base:    #EAF3DE;
+      --green-bg:      #f4fbee;
+      --gray-dark:     #2C2C2A;
+      --gray-mid:      #444441;
+      --gray-muted:    #5F5E5A;
+      --gray-soft:     #888780;
+      --gray-line:     #D3D1C7;
+      --white:         #ffffff;
+      --ff-serif:      'Noto Serif JP', serif;
+      --ff-sans:       'Noto Sans JP', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--ff-sans);
+      background: var(--green-bg);
+      color: var(--gray-dark);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-8px); }
+    }
+
+    .fade-up { opacity: 0; animation: fadeUp 0.7s ease forwards; }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.35s; }
+    .delay-4 { animation-delay: 0.5s; }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--green-pale);
+      padding: 0 5vw;
+      display: flex; justify-content: space-between; align-items: center;
+      height: 56px;
+    }
+    .nav-logo {
+      font-family: var(--ff-serif);
+      font-size: 18px; font-weight: 500;
+      color: var(--green-main);
+      display: flex; align-items: center; gap: 8px;
+      text-decoration: none;
+    }
+    .nav-logo .k-badge {
+      width: 28px; height: 28px; border-radius: 6px;
+      background: var(--green-base);
+      border: 1px solid var(--green-pale);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; font-weight: 500; color: var(--green-deep);
+    }
+    .nav-links {
+      display: flex; gap: 28px; list-style: none;
+      font-size: 12px; color: var(--gray-muted);
+    }
+    .nav-links a { text-decoration: none; color: inherit; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--green-main); }
+    .nav-cta {
+      background: var(--green-main); color: var(--white);
+      padding: 7px 18px; border-radius: 20px;
+      font-size: 12px; font-weight: 500;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .nav-cta:hover { background: var(--green-deep); transform: translateY(-1px); }
+
+    .hero {
+      min-height: 90vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 80px 5vw 60px;
+      position: relative; overflow: hidden;
+    }
+    .hero-bg-circle {
+      position: absolute;
+      border-radius: 50%;
+      background: var(--green-base);
+      opacity: 0.5;
+      pointer-events: none;
+    }
+    .hero-bg-circle.c1 { width: 500px; height: 500px; top: -120px; left: -140px; }
+    .hero-bg-circle.c2 { width: 300px; height: 300px; bottom: -60px; right: -80px; }
+
+    .hero-label { font-size: 10px; letter-spacing: 4px; color: var(--green-mid); margin-bottom: 20px; }
+    .hero-k {
+      font-family: var(--ff-serif);
+      font-size: clamp(80px, 16vw, 140px);
+      font-weight: 300; color: var(--green-pale);
+      line-height: 1; margin-bottom: -10px;
+      animation: float 5s ease-in-out infinite;
+      position: relative; z-index: 1;
+    }
+    .hero-catch {
+      font-family: var(--ff-serif);
+      font-size: clamp(22px, 5vw, 36px);
+      font-weight: 400; color: var(--green-deep);
+      line-height: 1.7; margin-bottom: 16px;
+      position: relative; z-index: 1;
+    }
+    .hero-sub { font-size: 13px; color: var(--gray-muted); line-height: 1.9; margin-bottom: 36px; max-width: 420px; }
+    .hero-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--green-main); color: var(--white);
+      padding: 14px 32px; border-radius: 32px;
+      font-size: 14px; font-weight: 500;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(59,109,17,0.25);
+    }
+    .hero-btn:hover { background: var(--green-deep); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(59,109,17,0.3); }
+    .hero-note { font-size: 11px; color: var(--green-mid); margin-top: 12px; }
+
+    section { padding: 72px 5vw; }
+    .section-label { font-size: 10px; letter-spacing: 3px; color: var(--green-mid); text-align: center; margin-bottom: 12px; }
+    .section-title {
+      font-family: var(--ff-serif);
+      font-size: clamp(20px, 4vw, 28px);
+      font-weight: 400; color: var(--green-deep);
+      text-align: center; margin-bottom: 40px; line-height: 1.6;
+    }
+
+    .pillars { background: var(--white); border-top: 1px solid var(--green-pale); border-bottom: 1px solid var(--green-pale); }
+    .pillar-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; max-width: 860px; margin: 0 auto; }
+    .pillar-card {
+      background: var(--green-base); border: 1px solid var(--green-pale);
+      border-radius: 16px; padding: 28px 20px; text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .pillar-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(59,109,17,0.12); }
+    .pillar-icon { font-family: var(--ff-serif); font-size: 32px; font-weight: 300; color: var(--green-main); margin-bottom: 12px; }
+    .pillar-name { font-size: 14px; font-weight: 500; color: var(--green-deep); margin-bottom: 8px; }
+    .pillar-desc { font-size: 12px; color: var(--gray-muted); line-height: 1.8; }
+
+    .about { background: var(--green-bg); }
+    .kari-meaning { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; max-width: 700px; margin: 0 auto 48px; }
+    .kari-card { background: var(--white); border: 1px solid var(--green-pale); border-radius: 14px; padding: 24px 16px; text-align: center; }
+    .kari-badge {
+      width: 48px; height: 48px; border-radius: 50%;
+      background: var(--green-base); border: 1px solid var(--green-pale);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 12px;
+      font-family: var(--ff-serif); font-size: 20px; font-weight: 400; color: var(--green-deep);
+    }
+    .kari-title { font-size: 13px; font-weight: 500; color: var(--green-deep); margin-bottom: 6px; }
+    .kari-text { font-size: 11px; color: var(--gray-muted); line-height: 1.8; }
+
+    .story-box { max-width: 680px; margin: 0 auto 40px; background: var(--white); border: 1px solid var(--green-pale); border-radius: 16px; padding: 36px; }
+    .story-box h3 { font-family: var(--ff-serif); font-size: 16px; font-weight: 400; color: var(--green-deep); margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--green-base); }
+    .story-box p { font-size: 14px; color: var(--gray-mid); line-height: 2.2; margin-bottom: 16px; }
+    .story-box p:last-child { margin-bottom: 0; }
+    .story-highlight { background: var(--green-base); padding: 3px 10px; border-radius: 6px; color: var(--green-deep); font-weight: 500; }
+
+    .profile-card { max-width: 680px; margin: 0 auto; background: var(--green-base); border: 1px solid var(--green-pale); border-radius: 16px; padding: 28px; display: flex; gap: 20px; align-items: flex-start; }
+    .profile-avatar { width: 64px; height: 64px; border-radius: 50%; background: var(--green-main); display: flex; align-items: center; justify-content: center; font-family: var(--ff-serif); font-size: 26px; font-weight: 300; color: var(--green-base); flex-shrink: 0; }
+    .profile-name { font-size: 16px; font-weight: 500; color: var(--green-deep); margin-bottom: 2px; }
+    .profile-role { font-size: 11px; color: var(--green-mid); letter-spacing: 1px; margin-bottom: 12px; }
+    .profile-bio { font-size: 12px; color: var(--green-deep); line-height: 2; margin-bottom: 16px; }
+    .profile-btn { display: inline-flex; align-items: center; gap: 6px; background: var(--green-main); color: var(--white); padding: 8px 20px; border-radius: 20px; font-size: 12px; font-weight: 500; text-decoration: none; transition: background 0.2s, transform 0.15s; }
+    .profile-btn:hover { background: var(--green-deep); transform: translateY(-1px); }
+
+    .content-section { background: var(--white); border-top: 1px solid var(--green-pale); }
+    .content-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; max-width: 860px; margin: 0 auto; }
+    .content-card { border: 1px solid var(--green-pale); border-radius: 14px; padding: 24px; transition: transform 0.2s, box-shadow 0.2s; background: var(--green-bg); }
+    .content-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(59,109,17,0.1); }
+    .content-tag { display: inline-block; background: var(--green-base); color: var(--green-main); font-size: 10px; padding: 3px 10px; border-radius: 12px; margin-bottom: 10px; }
+    .content-card h4 { font-size: 14px; font-weight: 500; color: var(--green-deep); margin-bottom: 6px; }
+    .content-card p { font-size: 12px; color: var(--gray-muted); line-height: 1.8; }
+
+    .x-section { background: var(--green-bg); }
+    .x-embed-wrap { max-width: 520px; margin: 0 auto; background: var(--white); border: 1px solid var(--green-pale); border-radius: 16px; padding: 28px; text-align: center; }
+    .x-embed-icon { font-size: 28px; margin-bottom: 8px; }
+    .x-embed-wrap p { font-size: 12px; color: var(--gray-muted); margin-bottom: 16px; }
+    .x-embed-placeholder { background: var(--green-base); border-radius: 10px; padding: 20px; font-size: 12px; color: var(--gray-muted); }
+
+    .cta-section { background: var(--green-main); text-align: center; padding: 72px 5vw; }
+    .cta-section h2 { font-family: var(--ff-serif); font-size: clamp(20px, 4vw, 30px); font-weight: 400; color: var(--green-base); margin-bottom: 10px; line-height: 1.6; }
+    .cta-section p { font-size: 13px; color: var(--green-light); margin-bottom: 28px; }
+    .cta-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--green-base); color: var(--green-deep); padding: 14px 36px; border-radius: 32px; font-size: 14px; font-weight: 500; text-decoration: none; transition: background 0.2s, transform 0.15s; }
+    .cta-btn:hover { background: var(--white); transform: translateY(-2px); }
+
+    footer { background: var(--green-deep); text-align: center; padding: 28px; font-size: 11px; color: var(--green-mid); }
+
+    .divider { width: 40px; height: 2px; background: var(--green-pale); margin: 0 auto 32px; border-radius: 2px; }
+
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .profile-card { flex-direction: column; }
+      .hero-k { font-size: 80px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#" class="nav-logo">
+      <span class="k-badge">K</span>
+      カリラボ
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">about</a></li>
+      <li><a href="#content">コンテンツ</a></li>
+      <li><a href="#contact">イベント</a></li>
+    </ul>
+    <a href="https://x.com/Jiajin_1023" target="_blank" class="nav-cta">𝕏 フォローする</a>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-bg-circle c1"></div>
+    <div class="hero-bg-circle c2"></div>
+    <p class="hero-label fade-up delay-1">KARI LAB</p>
+    <div class="hero-k fade-up delay-1">K</div>
+    <h1 class="hero-catch fade-up delay-2">実験するように、<br>自分軸で、生きる。</h1>
+    <p class="hero-sub fade-up delay-3">
+      かして、カリて、お互い幸せを。<br>
+      努力・競争・個人主義に疲れた人が<br>
+      自分軸を取り戻す実験場。
+    </p>
+    <a href="https://x.com/Jiajin_1023" target="_blank" class="hero-btn fade-up delay-4">
+      𝕏 @Jiajin_1023 をフォローする
+    </a>
+    <p class="hero-note fade-up delay-4">AI活用tips・さぼり術・イベント情報を毎日発信中</p>
+  </section>
+
+  <section class="pillars" id="content">
+    <p class="section-label">WHAT WE DO</p>
+    <h2 class="section-title">カリラボの3本柱</h2>
+    <div class="pillar-grid">
+      <div class="pillar-card">
+        <div class="pillar-icon">AI</div>
+        <div class="pillar-name">AI活用術</div>
+        <p class="pillar-desc">本業をAIに任せて効率化。<br>余白をつくり、好きなことへ。</p>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon">心</div>
+        <div class="pillar-name">心理学×さぼり術</div>
+        <p class="pillar-desc">無理せず、うまく抜いて、<br>幸福度を静かに上げていく。</p>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon">遊</div>
+        <div class="pillar-name">体験・イベント</div>
+        <p class="pillar-desc">石鹸・ろうそくづくり・旅。<br>一緒に楽しく実験しよう。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <p class="section-label">ABOUT</p>
+    <h2 class="section-title">カリ、ってなに？</h2>
+    <div class="divider"></div>
+
+    <div class="kari-meaning">
+      <div class="kari-card">
+        <div class="kari-badge">K</div>
+        <div class="kari-title">カリウム</div>
+        <p class="kari-text">元素記号K。<br>実験するように、<br>人生を試してみる。</p>
+      </div>
+      <div class="kari-card">
+        <div class="kari-badge">借</div>
+        <div class="kari-title">借りる</div>
+        <p class="kari-text">できないことは<br>借りればいい。<br>弱さは武器になる。</p>
+      </div>
+      <div class="kari-card">
+        <div class="kari-badge">貸</div>
+        <div class="kari-title">貸す</div>
+        <p class="kari-text">好きで得た能力を<br>誰かに渡す。<br>循環する幸せ。</p>
+      </div>
+    </div>
+
+    <div class="story-box">
+      <h3>なぜカリラボをつくったのか</h3>
+      <p>「能力がない奴はゴミだ」という空気、感じたことありませんか？</p>
+      <p>資格、収入、肩書き、恋人の有無——気づけば<span class="story-highlight">他人のものさしで自分を測って</span>、しんどくなっていた。</p>
+      <p>でも、よく考えたら変な話です。全部ひとりでできる人間なんて、どこにもいない。</p>
+      <p><span class="story-highlight">先にできることは貸して、足りなければ借りればいい。</span></p>
+      <p>それだけで、もう十分すごい。</p>
+      <p>カリラボは、努力・競争・個人主義に疲れた人が<span class="story-highlight">自分軸を取り戻して、好きなことに集中して、楽しく生きる</span>ための実験場です。</p>
+    </div>
+
+    <div class="profile-card">
+      <div class="profile-avatar">ケ</div>
+      <div>
+        <div class="profile-name">岩田 佳津（ケイ）</div>
+        <div class="profile-role">イベント企画サイエンティスト</div>
+        <p class="profile-bio">
+          本名の中国語読み「佳津（Jiajin）」から、Jiaは中国語でカリウムを意味するためYouTubeではカリウム（元素K）、ペンネームはケイ。<br>
+          AI・心理学・石鹸づくり・旅など、実験するように生きながら、自分軸で豊かに生きるヒントをXで毎日発信中。
+        </p>
+        <a href="https://x.com/Jiajin_1023" target="_blank" class="profile-btn">𝕏 @Jiajin_1023 をフォロー</a>
+      </div>
+    </div>
+
+    <div style="max-width: 680px; margin: 24px auto 0;">
+      <p style="font-size: 11px; letter-spacing: 2px; color: var(--green-mid); text-align: center; margin-bottom: 16px;">BACKGROUND</p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+        <div style="background: var(--white); border: 1px solid var(--green-pale); border-radius: 12px; padding: 16px 18px;">
+          <p style="font-size: 10px; letter-spacing: 1px; color: var(--green-mid); margin-bottom: 8px;">EDUCATION / CAREER</p>
+          <ul style="list-style: none; font-size: 12px; color: var(--gray-mid); line-height: 2.2;">
+            <li style="display: flex; gap: 8px;"><span style="color: var(--green-main); font-weight: 500;">▸</span>化学科 大学院卒</li>
+            <li style="display: flex; gap: 8px;"><span style="color: var(--green-main); font-weight: 500;">▸</span>現職：製造業 品質管理</li>
+            <li style="display: flex; gap: 8px;"><span style="color: var(--green-main); font-weight: 500;">▸</span>HSK 3級</li>
+          </ul>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--green-pale); border-radius: 12px; padding: 16px 18px;">
+          <p style="font-size: 10px; letter-spacing: 1px; color: var(--green-mid); margin-bottom: 8px;">QUALIFICATIONS</p>
+          <ul style="list-style: none; font-size: 12px; color: var(--gray-mid); line-height: 2.2;">
+            <li style="display: flex; gap: 8px;"><span style="color: var(--green-main); font-weight: 500;">▸</span>化学分析技能士 3級（取得予定）</li>
+            <li style="display: flex; gap: 8px;"><span style="color: var(--green-main); font-weight: 500;">▸</span>AIパスポート（勉強中）</li>
+            <li style="display: flex; gap: 8px; color: var(--green-mid); font-style: italic;"><span style="font-weight: 500;">＋</span>随時更新中…</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <p class="section-label">CONTENTS</p>
+    <h2 class="section-title">発信コンテンツ</h2>
+    <div class="content-grid">
+      <div class="content-card">
+        <span class="content-tag">AI活用</span>
+        <h4>本業を効率化するAIツール</h4>
+        <p>ChatGPT・Claude・Geminiを使って、仕事を賢くこなして余白をつくる具体的な方法を発信。</p>
+      </div>
+      <div class="content-card">
+        <span class="content-tag">心理学</span>
+        <h4>さぼり術と幸福の科学</h4>
+        <p>心理学をもとに、無理せず成果を出しながら自分の幸福を最大化するコツを紹介。</p>
+      </div>
+      <div class="content-card">
+        <span class="content-tag">体験イベント</span>
+        <h4>石鹸・ろうそくづくり・旅</h4>
+        <p>小さな「楽しい」を一緒に体験するイベントを定期開催。参加者募集はXで発信中。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="x-section" id="contact">
+    <p class="section-label">LATEST</p>
+    <h2 class="section-title">最新のX投稿</h2>
+    <div class="x-embed-wrap">
+      <div class="x-embed-icon">𝕏</div>
+      <p>@Jiajin_1023 の最新投稿はこちら</p>
+      <!-- Twitter Widget をここに埋め込む -->
+      <!-- <a class="twitter-timeline" href="https://twitter.com/Jiajin_1023"></a> -->
+      <!-- <script async src="https://platform.twitter.com/widgets.js"></script> -->
+      <div class="x-embed-placeholder">
+        Xのタイムラインがここに表示されます。<br>
+        Twitter Widgetのスクリプトを有効にしてください。
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <h2>実験するように、<br>一緒に生きよう。</h2>
+    <p>毎日のAI tips・さぼり術・イベント情報を配信中</p>
+    <a href="https://x.com/Jiajin_1023" target="_blank" class="cta-btn">𝕏 @Jiajin_1023 をフォローする</a>
+  </section>
+
+  <footer>
+    <p>© カリラボ / Kari Lab &nbsp;|&nbsp; <a href="https://x.com/Jiajin_1023" target="_blank" style="color: var(--green-mid); text-decoration: none;">𝕏 @Jiajin_1023</a> &nbsp;|&nbsp; <a href="mailto:iwa1124ta@gmail.com" style="color: var(--green-mid); text-decoration: none;">iwa1124ta@gmail.com</a></p>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.pillar-card, .kari-card, .content-card, .story-box, .profile-card').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(el);
+    });
+  </script>
+
+</body>
+</html>
