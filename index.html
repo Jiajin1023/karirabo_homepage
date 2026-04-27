@@ -1,270 +1,412 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>岩田佳津 | Katsu Chemistry</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>カリラボ | 実験するように、自分軸で、生きる。</title>
+  <meta name="description" content="実験するように、自分軸で、生きる。努力・競争・個人主義に疲れた人が自分軸を取り戻す実験場。AI・心理学・体験イベントで、好きなことに集中して楽しく生きるヒントを発信中。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+
   <style>
-    *{box-sizing:border-box;margin:0;padding:0;}
-    :root{
-      --navy:#3a9a6a;--navy-light:#4caf7d;--slate:#7a9e84;
-      --white:#ffffff;--off:#eef5eb;--border:#d4e8cc;--accent:#c8a800;
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green-deep:    #27500A;
+      --green-main:    #3B6D11;
+      --green-mid:     #639922;
+      --green-light:   #97C459;
+      --green-pale:    #C0DD97;
+      --green-base:    #EAF3DE;
+      --green-bg:      #f4fbee;
+      --gray-dark:     #2C2C2A;
+      --gray-mid:      #444441;
+      --gray-muted:    #5F5E5A;
+      --gray-soft:     #888780;
+      --gray-line:     #D3D1C7;
+      --white:         #ffffff;
+      --ff-serif:      'Noto Serif JP', serif;
+      --ff-sans:       'Noto Sans JP', sans-serif;
     }
-    body{font-family:'Montserrat','Noto Sans JP',sans-serif;background:#f7faf5;color:#2d4a35;}
 
-    nav{display:flex;align-items:center;justify-content:space-between;padding:16px 48px;border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(255,255,255,0.96);backdrop-filter:blur(8px);z-index:100;}
-    .nav-logo{font-size:12px;font-weight:700;color:var(--navy);letter-spacing:0.22em;}
-    .nav-links{display:flex;gap:28px;}
-    .nav-links a{font-size:10.5px;color:var(--slate);letter-spacing:0.14em;text-decoration:none;transition:color 0.2s;}
-    .nav-links a:hover{color:var(--navy);}
+    html { scroll-behavior: smooth; }
 
-    /* ── ヒーローエリアの修正 ── */
-    .hero{padding:72px 48px 60px;border-bottom:1px solid var(--border);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:space-between;gap:40px;}
-    .hero-content{flex:1;z-index:2;}
-    .hero-visual{flex:0 0 320px;z-index:2;}
-    .hero-img{width:100%;border-radius:20px;box-shadow:0 20px 40px rgba(0,35,102,0.1);border:1px solid var(--border);}
-    
-    .hero-benz{position:absolute;right:-10px;top:-10px;opacity:0.035;z-index:1;}
-    .hero-tag{font-size:9px;font-weight:700;color:var(--navy);letter-spacing:0.32em;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
-    .hero-tag::before{content:'';width:24px;height:2px;background:var(--navy);display:inline-block;}
-    .hero-name{font-size:44px;font-weight:700;color:var(--navy);letter-spacing:0.14em;margin-bottom:6px;line-height:1.1;}
-    .hero-name-en{font-size:11px;font-weight:300;color:var(--slate);letter-spacing:0.24em;margin-bottom:24px;}
-    .hero-desc{font-size:12.5px;font-weight:300;color:#555;line-height:2;letter-spacing:0.04em;max-width:460px;margin-bottom:32px;}
-    .hero-meta{display:flex;gap:36px;flex-wrap:wrap;}
-    .hero-meta-item{display:flex;flex-direction:column;gap:4px;}
-    .hero-meta-label{font-size:8px;font-weight:700;color:var(--slate);letter-spacing:0.24em;}
-    .hero-meta-val{font-size:12px;font-weight:400;color:var(--navy);letter-spacing:0.06em;}
+    body {
+      font-family: var(--ff-sans);
+      background: var(--green-bg);
+      color: var(--gray-dark);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
 
-    .section{padding:56px 48px;border-bottom:1px solid var(--border);}
-    .sec-header{display:flex;align-items:baseline;gap:12px;margin-bottom:32px;}
-    .sec-label{font-size:9px;font-weight:700;color:var(--navy);letter-spacing:0.32em;display:flex;align-items:center;gap:8px;}
-    .sec-label::before{content:'';width:16px;height:2px;background:var(--navy);display:inline-block;}
-    .sec-count{font-size:10px;color:var(--slate);}
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-8px); }
+    }
 
-    .portfolio-filters{display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap;}
-    .filter-btn{padding:5px 14px;border:0.5px solid var(--border);border-radius:20px;font-size:10px;font-weight:600;color:var(--slate);background:#fff;cursor:pointer;letter-spacing:0.1em;transition:all 0.2s;font-family:inherit;}
-    .filter-btn:hover,.filter-btn.active{background:var(--navy);color:#fff;border-color:var(--navy);}
+    .fade-up { opacity: 0; animation: fadeUp 0.7s ease forwards; }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.35s; }
+    .delay-4 { animation-delay: 0.5s; }
 
-    .portfolio-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;}
-    .p-card{background:#fff;border:0.5px solid var(--border);border-radius:10px;overflow:hidden;transition:border-color 0.2s,transform 0.2s,box-shadow 0.2s;}
-    .p-card:hover{border-color:#aab8d8;transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,35,102,.08);}
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--green-pale);
+      padding: 0 5vw;
+      display: flex; justify-content: space-between; align-items: center;
+      height: 56px;
+    }
+    .nav-logo {
+      font-family: var(--ff-serif);
+      font-size: 18px; font-weight: 500;
+      color: var(--green-main);
+      display: flex; align-items: center; gap: 8px;
+      text-decoration: none;
+    }
+    .nav-logo .k-badge {
+      width: 28px; height: 28px; border-radius: 6px;
+      background: var(--green-base);
+      border: 1px solid var(--green-pale);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; font-weight: 500; color: var(--green-deep);
+    }
+    .nav-links {
+      display: flex; gap: 28px; list-style: none;
+      font-size: 12px; color: var(--gray-muted);
+    }
+    .nav-links a { text-decoration: none; color: inherit; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--green-main); }
+    .nav-cta {
+      background: var(--green-main); color: var(--white);
+      padding: 7px 18px; border-radius: 20px;
+      font-size: 12px; font-weight: 500;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .nav-cta:hover { background: var(--green-deep); transform: translateY(-1px); }
 
-    .p-thumb{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:var(--off);}
-    .p-thumb-placeholder{width:100%;aspect-ratio:16/9;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;}
-    .ph-event{background:linear-gradient(135deg,#e8f0fe,#c5d5f8);}
-    .ph-slide{background:linear-gradient(135deg,#e8f4ed,#c5e0d0);}
-    .ph-dev{background:linear-gradient(135deg,#fce8e6,#f5c0bc);}
-    .ph-video{background:linear-gradient(135deg,#fef3e2,#fddba0);}
-    .ph-image{background:linear-gradient(135deg,#f3e8ff,#ddbdff);}
-    .ph-icon{font-size:2rem;}
-    .ph-label{font-size:9px;font-weight:700;letter-spacing:0.16em;color:rgba(0,0,0,0.3);}
+    .hero {
+      min-height: 90vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 80px 5vw 60px;
+      position: relative; overflow: hidden;
+    }
+    .hero-bg-circle {
+      position: absolute;
+      border-radius: 50%;
+      background: var(--green-base);
+      opacity: 0.5;
+      pointer-events: none;
+    }
+    .hero-bg-circle.c1 { width: 500px; height: 500px; top: -120px; left: -140px; }
+    .hero-bg-circle.c2 { width: 300px; height: 300px; bottom: -60px; right: -80px; }
 
-    .p-body{padding:16px 18px 14px;}
-    .p-card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;}
-    .p-year{font-size:10px;font-weight:700;color:var(--accent);letter-spacing:0.1em;}
-    .p-tag{font-size:8.5px;font-weight:700;color:var(--navy);background:var(--off);padding:3px 10px;border-radius:20px;letter-spacing:0.1em;}
-    .p-title{font-size:12px;font-weight:400;color:#333;line-height:1.75;letter-spacing:0.03em;margin-bottom:12px;}
+    .hero-label { font-size: 10px; letter-spacing: 4px; color: var(--green-mid); margin-bottom: 20px; }
+    .hero-k {
+      font-family: var(--ff-serif);
+      font-size: clamp(80px, 16vw, 140px);
+      font-weight: 300; color: var(--green-pale);
+      line-height: 1; margin-bottom: -10px;
+      animation: float 5s ease-in-out infinite;
+      position: relative; z-index: 1;
+    }
+    .hero-catch {
+      font-family: var(--ff-serif);
+      font-size: clamp(22px, 5vw, 36px);
+      font-weight: 400; color: var(--green-deep);
+      line-height: 1.7; margin-bottom: 16px;
+      position: relative; z-index: 1;
+    }
+    .hero-sub { font-size: 13px; color: var(--gray-muted); line-height: 1.9; margin-bottom: 36px; max-width: 420px; }
+    .hero-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--green-main); color: var(--white);
+      padding: 14px 32px; border-radius: 32px;
+      font-size: 14px; font-weight: 500;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(59,109,17,0.25);
+    }
+    .hero-btn:hover { background: var(--green-deep); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(59,109,17,0.3); }
+    .hero-note { font-size: 11px; color: var(--green-mid); margin-top: 12px; }
 
-    .p-actions{display:flex;gap:8px;flex-wrap:wrap;}
-    .p-btn{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:6px;font-size:10px;font-weight:600;letter-spacing:0.08em;text-decoration:none;cursor:pointer;border:none;font-family:inherit;transition:all .2s;}
-    .p-btn-primary{background:var(--navy);color:#fff;}
-    .p-btn-outline{background:#fff;color:var(--navy);border:0.5px solid var(--navy);}
+    section { padding: 72px 5vw; }
+    .section-label { font-size: 10px; letter-spacing: 3px; color: var(--green-mid); text-align: center; margin-bottom: 12px; }
+    .section-title {
+      font-family: var(--ff-serif);
+      font-size: clamp(20px, 4vw, 28px);
+      font-weight: 400; color: var(--green-deep);
+      text-align: center; margin-bottom: 40px; line-height: 1.6;
+    }
 
-    #lb{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:300;align-items:center;justify-content:center;flex-direction:column;gap:12px;}
-    #lb.open{display:flex;}
-    #lb-img{max-width:92vw;max-height:85vh;border-radius:8px;object-fit:contain;}
-    #lb-close{position:fixed;top:1.2rem;right:1.6rem;font-size:1.8rem;color:#fff;cursor:pointer;user-select:none;z-index:301;}
-    #lb-dl{padding:8px 20px;background:var(--navy);color:#fff;border-radius:6px;font-size:11px;font-weight:600;text-decoration:none;letter-spacing:.1em;}
+    .pillars { background: var(--white); border-top: 1px solid var(--green-pale); border-bottom: 1px solid var(--green-pale); }
+    .pillar-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; max-width: 860px; margin: 0 auto; }
+    .pillar-card {
+      background: var(--green-base); border: 1px solid var(--green-pale);
+      border-radius: 16px; padding: 28px 20px; text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .pillar-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(59,109,17,0.12); }
+    .pillar-icon { font-family: var(--ff-serif); font-size: 32px; font-weight: 300; color: var(--green-main); margin-bottom: 12px; }
+    .pillar-name { font-size: 14px; font-weight: 500; color: var(--green-deep); margin-bottom: 8px; }
+    .pillar-desc { font-size: 12px; color: var(--gray-muted); line-height: 1.8; }
 
-    .ach-list{display:flex;flex-direction:column;}
-    .ach-item{display:flex;align-items:baseline;gap:20px;padding:14px 0;border-bottom:0.5px solid var(--border);}
-    .ach-year{font-size:10px;font-weight:700;color:var(--navy);letter-spacing:0.1em;min-width:44px;}
-    .ach-text{font-size:12px;font-weight:300;color:#444;letter-spacing:0.04em;flex:1;}
-    .ach-tag{font-size:8.5px;font-weight:700;color:var(--navy);background:var(--off);padding:3px 10px;border-radius:20px;white-space:nowrap;}
-    .ach-del{cursor:pointer;font-size:16px;color:#ccc;padding:0 4px;background:none;border:none;line-height:1;font-family:inherit;}
+    .about { background: var(--green-bg); }
+    .kari-meaning { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; max-width: 700px; margin: 0 auto 48px; }
+    .kari-card { background: var(--white); border: 1px solid var(--green-pale); border-radius: 14px; padding: 24px 16px; text-align: center; }
+    .kari-badge {
+      width: 48px; height: 48px; border-radius: 50%;
+      background: var(--green-base); border: 1px solid var(--green-pale);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 12px;
+      font-family: var(--ff-serif); font-size: 20px; font-weight: 400; color: var(--green-deep);
+    }
+    .kari-title { font-size: 13px; font-weight: 500; color: var(--green-deep); margin-bottom: 6px; }
+    .kari-text { font-size: 11px; color: var(--gray-muted); line-height: 1.8; }
 
-    .contact-section{padding:56px 48px;background:var(--navy);}
-    .contact-section .sec-label{color:rgba(255,255,255,0.45);}
-    .contact-section .sec-label::before{background:rgba(255,255,255,0.4);}
-    .contact-grid{display:flex;gap:48px;flex-wrap:wrap;margin-top:20px;}
-    .c-item{display:flex;flex-direction:column;gap:4px;}
-    .c-lbl{font-size:8px;font-weight:700;color:rgba(255,255,255,0.45);letter-spacing:0.26em;}
-    .c-val{font-size:13px;font-weight:300;color:#fff;letter-spacing:0.04em;}
-    .footer{padding:18px 48px;display:flex;justify-content:space-between;align-items:center;}
-    .footer-copy{font-size:10px;color:var(--slate);letter-spacing:0.08em;}
-    .footer-logo{font-size:11px;font-weight:700;color:var(--navy);letter-spacing:0.2em;}
+    .story-box { max-width: 680px; margin: 0 auto 40px; background: var(--white); border: 1px solid var(--green-pale); border-radius: 16px; padding: 36px; }
+    .story-box h3 { font-family: var(--ff-serif); font-size: 16px; font-weight: 400; color: var(--green-deep); margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--green-base); }
+    .story-box p { font-size: 14px; color: var(--gray-mid); line-height: 2.2; margin-bottom: 16px; }
+    .story-box p:last-child { margin-bottom: 0; }
+    .story-highlight { background: var(--green-base); padding: 3px 10px; border-radius: 6px; color: var(--green-deep); font-weight: 500; }
 
-    @media(max-width:800px){
-      .hero{flex-direction:column-reverse;padding:40px 20px;text-align:center;}
-      .hero-content{display:flex;flex-direction:column;align-items:center;}
-      .hero-tag{justify-content:center;}
-      .hero-visual{flex:0 0 240px;width:240px;}
-      .hero-meta{justify-content:center;}
-      nav,.section,.contact-section,.footer{padding-left:20px;padding-right:20px;}
-      .hero-name{font-size:32px;}
-      .portfolio-grid{grid-template-columns:1fr;}
+    .profile-card { max-width: 680px; margin: 0 auto; background: var(--green-base); border: 1px solid var(--green-pale); border-radius: 16px; padding: 28px; display: flex; gap: 20px; align-items: flex-start; }
+    .profile-avatar { width: 64px; height: 64px; border-radius: 50%; background: var(--green-main); display: flex; align-items: center; justify-content: center; font-family: var(--ff-serif); font-size: 26px; font-weight: 300; color: var(--green-base); flex-shrink: 0; }
+    .profile-name { font-size: 16px; font-weight: 500; color: var(--green-deep); margin-bottom: 2px; }
+    .profile-role { font-size: 11px; color: var(--green-mid); letter-spacing: 1px; margin-bottom: 12px; }
+    .profile-bio { font-size: 12px; color: var(--green-deep); line-height: 2; margin-bottom: 16px; }
+    .profile-btn { display: inline-flex; align-items: center; gap: 6px; background: var(--green-main); color: var(--white); padding: 8px 20px; border-radius: 20px; font-size: 12px; font-weight: 500; text-decoration: none; transition: background 0.2s, transform 0.15s; }
+    .profile-btn:hover { background: var(--green-deep); transform: translateY(-1px); }
+
+    .content-section { background: var(--white); border-top: 1px solid var(--green-pale); }
+    .content-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; max-width: 860px; margin: 0 auto; }
+    .content-card { border: 1px solid var(--green-pale); border-radius: 14px; padding: 24px; transition: transform 0.2s, box-shadow 0.2s; background: var(--green-bg); }
+    .content-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(59,109,17,0.1); }
+    .content-tag { display: inline-block; background: var(--green-base); color: var(--green-main); font-size: 10px; padding: 3px 10px; border-radius: 12px; margin-bottom: 10px; }
+    .content-card h4 { font-size: 14px; font-weight: 500; color: var(--green-deep); margin-bottom: 6px; }
+    .content-card p { font-size: 12px; color: var(--gray-muted); line-height: 1.8; }
+
+    .x-section { background: var(--green-bg); }
+    .x-embed-wrap { max-width: 520px; margin: 0 auto; background: var(--white); border: 1px solid var(--green-pale); border-radius: 16px; padding: 28px; text-align: center; }
+    .x-embed-icon { font-size: 28px; margin-bottom: 8px; }
+    .x-embed-wrap p { font-size: 12px; color: var(--gray-muted); margin-bottom: 16px; }
+    .x-embed-placeholder { background: var(--green-base); border-radius: 10px; padding: 20px; font-size: 12px; color: var(--gray-muted); }
+
+    .cta-section { background: var(--green-main); text-align: center; padding: 72px 5vw; }
+    .cta-section h2 { font-family: var(--ff-serif); font-size: clamp(20px, 4vw, 30px); font-weight: 400; color: var(--green-base); margin-bottom: 10px; line-height: 1.6; }
+    .cta-section p { font-size: 13px; color: var(--green-light); margin-bottom: 28px; }
+    .cta-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--green-base); color: var(--green-deep); padding: 14px 36px; border-radius: 32px; font-size: 14px; font-weight: 500; text-decoration: none; transition: background 0.2s, transform 0.15s; }
+    .cta-btn:hover { background: var(--white); transform: translateY(-2px); }
+
+    footer { background: var(--green-deep); text-align: center; padding: 28px; font-size: 11px; color: var(--green-mid); }
+
+    .divider { width: 40px; height: 2px; background: var(--green-pale); margin: 0 auto 32px; border-radius: 2px; }
+
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .profile-card { flex-direction: column; }
+      .hero-k { font-size: 80px; }
     }
   </style>
 </head>
 <body>
 
-<div id="lb">
-  <span id="lb-close" onclick="closeLB()">✕</span>
-  <img id="lb-img" src="" alt="">
-  <a id="lb-dl" href="" download>↓ ダウンロード</a>
-</div>
+  <nav>
+    <a href="#" class="nav-logo">
+      <span class="k-badge">K</span>
+      カリラボ
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">about</a></li>
+      <li><a href="#content">コンテンツ</a></li>
+      <li><a href="#contact">イベント</a></li>
+    </ul>
+    <a href="https://x.com/Jiajin_1023" target="_blank" class="nav-cta">𝕏 フォローする</a>
+  </nav>
 
-<nav>
-  <div class="nav-logo">KATSU_CHEMISTRY</div>
-  <div class="nav-links">
-    <a href="#about">About</a>
-    <a href="#portfolio">Portfolio</a>
-    <a href="#achievements">Achievements</a>
-    <a href="#contact">Contact</a>
-  </div>
-</nav>
+  <section class="hero">
+    <div class="hero-bg-circle c1"></div>
+    <div class="hero-bg-circle c2"></div>
+    <p class="hero-label fade-up delay-1">KARI LAB</p>
+    <div class="hero-k fade-up delay-1">K</div>
+    <h1 class="hero-catch fade-up delay-2">実験するように、<br>自分軸で、生きる。</h1>
+    <p class="hero-sub fade-up delay-3">
+      かして、カリて、お互い幸せを。<br>
+      努力・競争・個人主義に疲れた人が<br>
+      自分軸を取り戻す実験場。
+    </p>
+    <a href="https://x.com/Jiajin_1023" target="_blank" class="hero-btn fade-up delay-4">
+      𝕏 @Jiajin_1023 をフォローする
+    </a>
+    <p class="hero-note fade-up delay-4">AI活用tips・さぼり術・イベント情報を毎日発信中</p>
+  </section>
 
-<section class="hero" id="about">
-  <svg class="hero-benz" width="340" height="340" viewBox="0 0 140 140" fill="none">
-    <polygon points="70,10 120,37.5 120,92.5 70,120 20,92.5 20,37.5" stroke="#002366" stroke-width="2.5" fill="none"/>
-    <polygon points="70,26 106,46 106,86 70,106 34,86 34,46" stroke="#002366" stroke-width="1.5" fill="none"/>
-    <line x1="70" y1="10" x2="70" y2="26" stroke="#002366" stroke-width="2"/>
-    <line x1="120" y1="37.5" x2="106" y2="46" stroke="#002366" stroke-width="2"/>
-    <line x1="120" y1="92.5" x2="106" y2="86" stroke="#002366" stroke-width="2"/>
-    <line x1="70" y1="120" x2="70" y2="106" stroke="#002366" stroke-width="2"/>
-    <line x1="20" y1="92.5" x2="34" y2="86" stroke="#002366" stroke-width="2"/>
-    <line x1="20" y1="37.5" x2="34" y2="46" stroke="#002366" stroke-width="2"/>
-  </svg>
-  
-  <div class="hero-content">
-    <div class="hero-tag">SCIENTIST CREATOR</div>
-    <div class="hero-name">岩田 佳津</div>
-    <div class="hero-name-en">IWATA KATSU</div>
-    <div class="hero-desc">化学の専門性とクリエイティブな視点を掛け合わせ、<br>好奇心を刺激し、創造的な時間をデザインする。</div>
-    <div class="hero-meta">
-      <div class="hero-meta-item"><div class="hero-meta-label">SPECIALTY</div><div class="hero-meta-val">化学</div></div>
-      <div class="hero-meta-item"><div class="hero-meta-label">X / TWITTER</div><div class="hero-meta-val">@katsu_chemistry</div></div>
-      <div class="hero-meta-item"><div class="hero-meta-label">EMAIL</div><div class="hero-meta-val">iwa1124ta@gmail.com</div></div>
-      <div class="hero-meta-item"><div class="hero-meta-label">GITHUB</div><div class="hero-meta-val">Jiajin1023</div></div>
+  <section class="pillars" id="content">
+    <p class="section-label">WHAT WE DO</p>
+    <h2 class="section-title">カリラボの3本柱</h2>
+    <div class="pillar-grid">
+      <div class="pillar-card">
+        <div class="pillar-icon">AI</div>
+        <div class="pillar-name">AI活用術</div>
+        <p class="pillar-desc">本業をAIに任せて効率化。<br>余白をつくり、好きなことへ。</p>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon">心</div>
+        <div class="pillar-name">心理学×さぼり術</div>
+        <p class="pillar-desc">無理せず、うまく抜いて、<br>幸福度を静かに上げていく。</p>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon">遊</div>
+        <div class="pillar-name">体験・イベント</div>
+        <p class="pillar-desc">石鹸・ろうそくづくり・旅。<br>一緒に楽しく実験しよう。</p>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <div class="hero-visual">
-    <img src="画像生成/hf_20260423_083427_4987b64e-e214-4e5e-8212-3ff47dc93a33.jpg" alt="Katsu Avatar" class="hero-img">
-  </div>
-</section>
+  <section class="about" id="about">
+    <p class="section-label">ABOUT</p>
+    <h2 class="section-title">カリ、ってなに？</h2>
+    <div class="divider"></div>
 
-<section class="section" id="portfolio">
-  <div class="sec-header">
-    <div class="sec-label">PORTFOLIO</div>
-    <div class="sec-count" id="p-count"></div>
-  </div>
-  <div class="portfolio-filters" id="filters"></div>
-  <div class="portfolio-grid" id="p-grid"></div>
-</section>
+    <div class="kari-meaning">
+      <div class="kari-card">
+        <div class="kari-badge">K</div>
+        <div class="kari-title">カリウム</div>
+        <p class="kari-text">元素記号K。<br>実験するように、<br>人生を試してみる。</p>
+      </div>
+      <div class="kari-card">
+        <div class="kari-badge">借</div>
+        <div class="kari-title">借りる</div>
+        <p class="kari-text">できないことは<br>借りればいい。<br>弱さは武器になる。</p>
+      </div>
+      <div class="kari-card">
+        <div class="kari-badge">貸</div>
+        <div class="kari-title">貸す</div>
+        <p class="kari-text">好きで得た能力を<br>誰かに渡す。<br>循環する幸せ。</p>
+      </div>
+    </div>
 
-<section class="section" id="achievements">
-  <div class="sec-header"><div class="sec-label">ACHIEVEMENTS & QUALIFICATIONS</div></div>
-  <div class="ach-list" id="ach-list"></div>
-  <div class="add-form">
-    <input name="year" placeholder="年" maxlength="4"/>
-    <input name="text" placeholder="資格・実績の内容"/>
-    <input name="tag" placeholder="タグ"/>
-    <button class="add-btn" onclick="addItem()">+ 追加</button>
-  </div>
-</section>
+    <div class="story-box">
+      <h3>なぜカリラボをつくったのか</h3>
+      <p>「能力がない奴はゴミだ」という空気、感じたことありませんか？</p>
+      <p>資格、収入、肩書き、恋人の有無——気づけば<span class="story-highlight">他人のものさしで自分を測って</span>、しんどくなっていた。</p>
+      <p>でも、よく考えたら変な話です。全部ひとりでできる人間なんて、どこにもいない。</p>
+      <p><span class="story-highlight">先にできることは貸して、足りなければ借りればいい。</span></p>
+      <p>それだけで、もう十分すごい。</p>
+      <p>カリラボは、努力・競争・個人主義に疲れた人が<span class="story-highlight">自分軸を取り戻して、好きなことに集中して、楽しく生きる</span>ための実験場です。</p>
+    </div>
 
-<section class="contact-section" id="contact">
-  <div class="sec-label">CONTACT</div>
-  <div class="contact-grid">
-    <div class="c-item"><div class="c-lbl">EMAIL</div><div class="c-val">iwa1124ta@gmail.com</div></div>
-    <div class="c-item"><div class="c-lbl">X / TWITTER</div><div class="c-val">@katsu_chemistry</div></div>
-    <div class="c-item"><div class="c-lbl">GITHUB</div><div class="c-val">github.com/Jiajin1023</div></div>
-  </div>
-</section>
+    <div class="profile-card">
+      <div class="profile-avatar">ケ</div>
+      <div>
+        <div class="profile-name">岩田 佳津（ケイ）</div>
+        <div class="profile-role">イベント企画サイエンティスト</div>
+        <p class="profile-bio">
+          本名の中国語読み「佳津（Jiajin）」から、Jiaは中国語でカリウムを意味するためYouTubeではカリウム（元素K）、ペンネームはケイ。<br>
+          AI・心理学・石鹸づくり・旅など、実験するように生きながら、自分軸で豊かに生きるヒントをXで毎日発信中。
+        </p>
+        <a href="https://x.com/Jiajin_1023" target="_blank" class="profile-btn">𝕏 @Jiajin_1023 をフォロー</a>
+      </div>
+    </div>
 
-<footer class="footer">
-  <div class="footer-copy">© 2026 Iwata Katsu. All rights reserved.</div>
-  <div class="footer-logo">KATSU_CHEMISTRY</div>
-</footer>
+    <div style="max-width: 680px; margin: 24px auto 0;">
+      <p style="font-size: 11px; letter-spacing: 2px; color: var(--green-mid); text-align: center; margin-bottom: 16px;">BACKGROUND</p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+        <div style="background: var(--white); border: 1px solid var(--green-pale); border-radius: 12px; padding: 16px 18px;">
+          <p style="font-size: 10px; letter-spacing: 1px; color: var(--green-mid); margin-bottom: 8px;">EDUCATION / CAREER</p>
+          <ul style="list-style: none; font-size: 12px; color: var(--gray-mid); line-height: 2.2;">
+            <li style="display: flex; gap: 8px;"><span style="color: var(--green-main); font-weight: 500;">▸</span>化学科 大学院卒</li>
+            <li style="display: flex; gap: 8px;"><span style="color: var(--green-main); font-weight: 500;">▸</span>現職：製造業 品質管理</li>
+            <li style="display: flex; gap: 8px;"><span style="color: var(--green-main); font-weight: 500;">▸</span>HSK 3級</li>
+          </ul>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--green-pale); border-radius: 12px; padding: 16px 18px;">
+          <p style="font-size: 10px; letter-spacing: 1px; color: var(--green-mid); margin-bottom: 8px;">QUALIFICATIONS</p>
+          <ul style="list-style: none; font-size: 12px; color: var(--gray-mid); line-height: 2.2;">
+            <li style="display: flex; gap: 8px;"><span style="color: var(--green-main); font-weight: 500;">▸</span>化学分析技能士 3級（取得予定）</li>
+            <li style="display: flex; gap: 8px;"><span style="color: var(--green-main); font-weight: 500;">▸</span>AIパスポート（勉強中）</li>
+            <li style="display: flex; gap: 8px; color: var(--green-mid); font-style: italic;"><span style="font-weight: 500;">＋</span>随時更新中…</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<script>
-const portfolioItems = [
-  { year:"2026", title:"石鹸・キャンドル制作イベント企画・運営（化学実験×クラフト）", tag:"イベント", cat:"event", file:"資料/soap_candle_v2.pptx", thumb:null },
-  { year:"2026", title:"ヨウ素実験イベント企画・運営", tag:"イベント", cat:"event", file:"資料/iodine_experiment.pptx", thumb:"資料/hf_20260406_081926_cd565b48-72c2-4e39-8121-b99ad79b1170.jpg" },
-  { year:"2026", title:"化学イベントポスター制作", tag:"イベント", cat:"event", file:"資料/chemicalevent_poster.pptx", thumb:null },
-  { year:"2025", title:"具体⇄抽象で説明力を爆上げ", tag:"勉強会", cat:"slide", file:"資料/concrete_abstract_communication_20260110201526.pdf", thumb:null },
-  { year:"2025", title:"関東の紅葉登山2025", tag:"発表", cat:"slide", file:"資料/kanto_autumn_hiking_2025_20251020063126(2).pdf", thumb:null },
-  { year:"2025", title:"丹沢・鍋割山 登山スライド", tag:"発表", cat:"slide", file:"資料/鍋割山.pdf", thumb:null },
-  { year:"2025", title:"秩父で遊ぶ 登山スライド", tag:"発表", cat:"slide", file:"資料/秩父で遊ぶ.pdf", thumb:null },
-  { year:"2025", title:"災害時の心理学とデマ対策", tag:"発表", cat:"slide", file:"画像生成/A_dramatic_digital_artwork_set_in_a_snowy_Tohoku_d-1765273044727.jpg", thumb:"画像生成/A_dramatic_digital_artwork_set_in_a_snowy_Tohoku_d-1765273044727.jpg" },
-  { year:"2025", title:"語学学習アプリ KariLabo", tag:"開発", cat:"dev", link:"https://github.com/Jiajin1023/LanguageLearning_KariLabo" },
-  { year:"2025", title:"具体と抽象アプリ", tag:"開発", cat:"dev", link:"https://github.com/Jiajin1023/ConcreteAbstract" },
-  { year:"2025", title:"大陸移動（科学解説動画）", tag:"動画制作", cat:"video", video:"動画生成/大陸の動画作成.mp4", thumb:null },
-  { year:"2026", title:"新年のあいさつ動画", tag:"動画制作", cat:"video", video:"動画生成/kGx3LzeE.mp4", thumb:null },
-  { year:"2026", title:"火山噴火（科学ビジュアライゼーション）", tag:"動画制作", cat:"video", video:"動画生成/dzFcaVXq.mp4", thumb:"画像生成/hf_20260423_052749_d3f7e22f-7182-45f0-be0e-fea3bcbb750e.jpg" },
-  { year:"2026", title:"架空の厳冬期・雪山", tag:"動画制作", cat:"video", video:"動画生成/hf_20260423_052036_68f1ee9e-d17c-420f-a5e1-ecd4d3f43bda.mp4", thumb:"画像生成/hf_20260423_041458_af8c8ace-e454-40aa-897b-49ea9dda543e.jpg" },
-  { year:"2026", title:"隕石衝突（科学ビジュアライゼーション）", tag:"動画制作", cat:"video", video:"動画生成/1802451d-df25-4e25-acd4-9937f899090a.mp4", thumb:"画像生成/ジャイアントインパクトの写真.jpg" },
-  { year:"2025", title:"化学実験室×コーディング", tag:"画像生成", cat:"image", file:"画像生成/hf_20260423_070343_ceef3cf4-2935-4636-8d1f-17ecfa1054f9.jpg", thumb:"画像生成/hf_20260423_070343_ceef3cf4-2935-4636-8d1f-17ecfa1054f9.jpg" },
-  { year:"2025", title:"石鹸→ろうそく制作フローチャート", tag:"図解制作", cat:"image", file:"資料/image.webp", thumb:"資料/image.webp" },
-  { year:"2025", title:"酸で脂肪酸が遊離する反応模式図", tag:"図解制作", cat:"image", file:"資料/hf_20260406_075113_45f367c5-3d31-430b-b1c4-afcbb69a0c4f.jpg", thumb:"資料/hf_20260406_075113_45f367c5-3d31-430b-b1c4-afcbb69a0c4f.jpg" },
-  { year:"2025", title:"スノーボールアースビジュアル", tag:"画像生成", cat:"image", file:"画像生成/A_cosmic_view_of_the_Earth_during_the_Ice_Age_from-1767355861331.jpg", thumb:"画像生成/A_cosmic_view_of_the_Earth_during_the_Ice_Age_from-1767355861331.jpg" },
-  { year:"2025", title:"オーロラ×雪山背景画像", tag:"画像生成", cat:"image", file:"画像生成/hf_20260423_054504_ad2f5c1b-f397-4699-9572-cacc0517a6e2.jpg", thumb:"画像生成/hf_20260423_054504_ad2f5c1b-f397-4699-9572-cacc0517a6e2.jpg" },
-  { year:"2025", title:"4コマ漫画（ジム代活用）", tag:"画像生成", cat:"image", file:"画像生成/Anime-style_four-panel_comic_featuring_a_youthful_-1761038365357.jpg", thumb:"画像生成/Anime-style_four-panel_comic_featuring_a_youthful_-1761038365357.jpg" },
-  { year:"2026", title:"サムネイル制作各種", tag:"サムネイル", cat:"image", file:"画像生成/A_dramatic_digital_artwork_set_in_a_snowy_Tohoku_d-1765273044727.jpg", thumb:"画像生成/A_dramatic_digital_artwork_set_in_a_snowy_Tohoku_d-1765273044727.jpg" }
-];
+  <section class="content-section">
+    <p class="section-label">CONTENTS</p>
+    <h2 class="section-title">発信コンテンツ</h2>
+    <div class="content-grid">
+      <div class="content-card">
+        <span class="content-tag">AI活用</span>
+        <h4>本業を効率化するAIツール</h4>
+        <p>ChatGPT・Claude・Geminiを使って、仕事を賢くこなして余白をつくる具体的な方法を発信。</p>
+      </div>
+      <div class="content-card">
+        <span class="content-tag">心理学</span>
+        <h4>さぼり術と幸福の科学</h4>
+        <p>心理学をもとに、無理せず成果を出しながら自分の幸福を最大化するコツを紹介。</p>
+      </div>
+      <div class="content-card">
+        <span class="content-tag">体験イベント</span>
+        <h4>石鹸・ろうそくづくり・旅</h4>
+        <p>小さな「楽しい」を一緒に体験するイベントを定期開催。参加者募集はXで発信中。</p>
+      </div>
+    </div>
+  </section>
 
-const catLabels={all:"すべて",event:"イベント",slide:"スライド",dev:"開発",video:"動画",image:"ビジュアル"};
-const catClass={event:"ph-event",slide:"ph-slide",dev:"ph-dev",video:"ph-video",image:"ph-image"};
-const catEmoji={event:"📅",slide:"📊",dev:"💻",video:"🎬",image:"🎨"};
+  <section class="x-section" id="contact">
+    <p class="section-label">LATEST</p>
+    <h2 class="section-title">最新のX投稿</h2>
+    <div class="x-embed-wrap">
+      <div class="x-embed-icon">𝕏</div>
+      <p>@Jiajin_1023 の最新投稿はこちら</p>
+      <!-- Twitter Widget をここに埋め込む -->
+      <!-- <a class="twitter-timeline" href="https://twitter.com/Jiajin_1023"></a> -->
+      <!-- <script async src="https://platform.twitter.com/widgets.js"></script> -->
+      <div class="x-embed-placeholder">
+        Xのタイムラインがここに表示されます。<br>
+        Twitter Widgetのスクリプトを有効にしてください。
+      </div>
+    </div>
+  </section>
 
-function extLabel(f){ if(!f)return''; const e=f.split('.').pop().toLowerCase(); return {pdf:'PDF',pptx:'PowerPoint',mp4:'MP4',png:'PNG',jpg:'JPG',webp:'WebP',jpeg:'JPEG'}[e]||e.toUpperCase(); }
+  <section class="cta-section">
+    <h2>実験するように、<br>一緒に生きよう。</h2>
+    <p>毎日のAI tips・さぼり術・イベント情報を配信中</p>
+    <a href="https://x.com/Jiajin_1023" target="_blank" class="cta-btn">𝕏 @Jiajin_1023 をフォローする</a>
+  </section>
 
-const dlSvg=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 15V3m0 12l-4-4m4 4l4-4"/><path d="M2 17v2a2 2 0 002 2h16a2 2 0 002-2v-2"/></svg>`;
-const extSvg=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>`;
+  <footer>
+    <p>© カリラボ / Kari Lab &nbsp;|&nbsp; <a href="https://x.com/Jiajin_1023" target="_blank" style="color: var(--green-mid); text-decoration: none;">𝕏 @Jiajin_1023</a> &nbsp;|&nbsp; <a href="mailto:iwa1124ta@gmail.com" style="color: var(--green-mid); text-decoration: none;">iwa1124ta@gmail.com</a></p>
+  </footer>
 
-function cardHTML(p, i) {
-  let thumbHTML = '';
-  if (p.video) {
-    const poster = p.thumb ? `poster="${p.thumb}"` : '';
-    thumbHTML = `<div class="p-video-wrap" id="vw${i}"><video ${poster} preload="none" controls style="width:100%;height:100%;object-fit:cover;display:block;"><source src="${p.video}" type="video/mp4"></video></div>`;
-  } else if (p.thumb) {
-    thumbHTML = `<img class="p-thumb" src="${p.thumb}" alt="" loading="lazy" onerror="this.style.display='none'">`;
-  } else {
-    thumbHTML = `<div class="p-thumb-placeholder ${catClass[p.cat]}"><div class="ph-icon">${catEmoji[p.cat]}</div><div class="ph-label">${catLabels[p.cat]||''}</div></div>`;
-  }
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.15 });
 
-  let actions = '';
-  if (p.link) {
-    actions = `<a class="p-btn p-btn-primary" href="${p.link}" target="_blank">${extSvg} GitHub で見る</a>`;
-  } else if (p.file) {
-    const isImg = /\.(png|jpg|jpeg|webp|gif|avif)$/i.test(p.file);
-    if (isImg) {
-      actions = `<button class="p-btn p-btn-primary" onclick="openLB('${p.file}')">${extSvg} 画像を見る</button><a class="p-btn p-btn-outline" href="${p.file}" download>${dlSvg} 保存</a>`;
-    } else {
-      actions = `<a class="p-btn p-btn-primary" href="${p.file}" download>${dlSvg} ダウンロード（${extLabel(p.file)}）</a>`;
-    }
-  } else if (p.video) {
-    actions = `<a class="p-btn p-btn-outline" href="${p.video}" download>${dlSvg} 動画を保存</a>`;
-  }
+    document.querySelectorAll('.pillar-card, .kari-card, .content-card, .story-box, .profile-card').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(el);
+    });
+  </script>
 
-  return `<div class="p-card">${thumbHTML}<div class="p-body"><div class="p-card-top"><span class="p-year">${p.year}</span><span class="p-tag">${p.tag}</span></div><div class="p-title">${p.title}</div><div class="p-actions">${actions}</div></div></div>`;
-}
-
-let currentFilter = "all";
-function renderFilters() { document.getElementById("filters").innerHTML = Object.entries(catLabels).map(([k,v]) => `<button class="filter-btn${k===currentFilter?' active':''}" onclick="setFilter('${k}')">${v}</button>`).join(''); }
-function renderGrid() { const filtered = currentFilter==="all" ? portfolioItems : portfolioItems.filter(p=>p.cat===currentFilter); document.getElementById("p-count").textContent = filtered.length + " 件"; document.getElementById("p-grid").innerHTML = filtered.map((p,i) => cardHTML(p, i)).join(''); }
-function setFilter(cat){ currentFilter=cat; renderFilters(); renderGrid(); }
-function openLB(src) { document.getElementById('lb-img').src = src; document.getElementById('lb-dl').href = src; document.getElementById('lb-dl').download = src.split('/').pop(); document.getElementById('lb').classList.add('open'); }
-function closeLB() { document.getElementById('lb').classList.remove('open'); }
-const ACH_KEY = 'katsu_achievements';
-let achItems = (()=>{ try{ const s=localStorage.getItem(ACH_KEY); return s?JSON.parse(s):[]; }catch(e){ return[]; } })();
-function renderAch() { const list = document.getElementById('ach-list'); list.innerHTML = achItems.length===0 ? `<p style="font-size:12px;color:var(--slate);padding:16px 0;">まだ登録されていません。</p>` : achItems.map((item,i) => `<div class="ach-item"><span class="ach-year">${item.year}</span><span class="ach-text">${item.text}</span>${item.tag?`<span class="ach-tag">${item.tag}</span>`:''}<button class="ach-del" onclick="removeItem(${i})">×</button></div>`).join(''); }
-function addItem() { const year=document.querySelector('input[name="year"]').value.trim(); const text=document.querySelector('input[name="text"]').value.trim(); const tag=document.querySelector('input[name="tag"]').value.trim(); if(!text)return; achItems.push({year,text,tag}); achItems.sort((a,b)=>(b.year||'').localeCompare(a.year||'')); localStorage.setItem(ACH_KEY,JSON.stringify(achItems)); document.querySelectorAll('.add-form input').forEach(i=>i.value=''); renderAch(); }
-function removeItem(i){ if(!confirm('削除しますか？'))return; achItems.splice(i,1); localStorage.setItem(ACH_KEY,JSON.stringify(achItems)); renderAch(); }
-
-renderFilters(); renderGrid(); renderAch();
-</script>
 </body>
 </html>
