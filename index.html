@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>岩田佳津 | Katsu Chemistry</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0;}
+    :root{
+      --navy:#3a9a6a;--navy-light:#4caf7d;--slate:#7a9e84;
+      --white:#ffffff;--off:#eef5eb;--border:#d4e8cc;--accent:#c8a800;
+    }
+    body{font-family:'Montserrat','Noto Sans JP',sans-serif;background:#f7faf5;color:#2d4a35;}
+
+    nav{display:flex;align-items:center;justify-content:space-between;padding:16px 48px;border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(255,255,255,0.96);backdrop-filter:blur(8px);z-index:100;}
+    .nav-logo{font-size:12px;font-weight:700;color:var(--navy);letter-spacing:0.22em;}
+    .nav-links{display:flex;gap:28px;}
+    .nav-links a{font-size:10.5px;color:var(--slate);letter-spacing:0.14em;text-decoration:none;transition:color 0.2s;}
+    .nav-links a:hover{color:var(--navy);}
+
+    /* ── ヒーローエリアの修正 ── */
+    .hero{padding:72px 48px 60px;border-bottom:1px solid var(--border);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:space-between;gap:40px;}
+    .hero-content{flex:1;z-index:2;}
+    .hero-visual{flex:0 0 320px;z-index:2;}
+    .hero-img{width:100%;border-radius:20px;box-shadow:0 20px 40px rgba(0,35,102,0.1);border:1px solid var(--border);}
+    
+    .hero-benz{position:absolute;right:-10px;top:-10px;opacity:0.035;z-index:1;}
+    .hero-tag{font-size:9px;font-weight:700;color:var(--navy);letter-spacing:0.32em;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+    .hero-tag::before{content:'';width:24px;height:2px;background:var(--navy);display:inline-block;}
+    .hero-name{font-size:44px;font-weight:700;color:var(--navy);letter-spacing:0.14em;margin-bottom:6px;line-height:1.1;}
+    .hero-name-en{font-size:11px;font-weight:300;color:var(--slate);letter-spacing:0.24em;margin-bottom:24px;}
+    .hero-desc{font-size:12.5px;font-weight:300;color:#555;line-height:2;letter-spacing:0.04em;max-width:460px;margin-bottom:32px;}
+    .hero-meta{display:flex;gap:36px;flex-wrap:wrap;}
+    .hero-meta-item{display:flex;flex-direction:column;gap:4px;}
+    .hero-meta-label{font-size:8px;font-weight:700;color:var(--slate);letter-spacing:0.24em;}
+    .hero-meta-val{font-size:12px;font-weight:400;color:var(--navy);letter-spacing:0.06em;}
+
+    .section{padding:56px 48px;border-bottom:1px solid var(--border);}
+    .sec-header{display:flex;align-items:baseline;gap:12px;margin-bottom:32px;}
+    .sec-label{font-size:9px;font-weight:700;color:var(--navy);letter-spacing:0.32em;display:flex;align-items:center;gap:8px;}
+    .sec-label::before{content:'';width:16px;height:2px;background:var(--navy);display:inline-block;}
+    .sec-count{font-size:10px;color:var(--slate);}
+
+    .portfolio-filters{display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap;}
+    .filter-btn{padding:5px 14px;border:0.5px solid var(--border);border-radius:20px;font-size:10px;font-weight:600;color:var(--slate);background:#fff;cursor:pointer;letter-spacing:0.1em;transition:all 0.2s;font-family:inherit;}
+    .filter-btn:hover,.filter-btn.active{background:var(--navy);color:#fff;border-color:var(--navy);}
+
+    .portfolio-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;}
+    .p-card{background:#fff;border:0.5px solid var(--border);border-radius:10px;overflow:hidden;transition:border-color 0.2s,transform 0.2s,box-shadow 0.2s;}
+    .p-card:hover{border-color:#aab8d8;transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,35,102,.08);}
+
+    .p-thumb{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:var(--off);}
+    .p-thumb-placeholder{width:100%;aspect-ratio:16/9;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;}
+    .ph-event{background:linear-gradient(135deg,#e8f0fe,#c5d5f8);}
+    .ph-slide{background:linear-gradient(135deg,#e8f4ed,#c5e0d0);}
+    .ph-dev{background:linear-gradient(135deg,#fce8e6,#f5c0bc);}
+    .ph-video{background:linear-gradient(135deg,#fef3e2,#fddba0);}
+    .ph-image{background:linear-gradient(135deg,#f3e8ff,#ddbdff);}
+    .ph-icon{font-size:2rem;}
+    .ph-label{font-size:9px;font-weight:700;letter-spacing:0.16em;color:rgba(0,0,0,0.3);}
+
+    .p-body{padding:16px 18px 14px;}
+    .p-card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;}
+    .p-year{font-size:10px;font-weight:700;color:var(--accent);letter-spacing:0.1em;}
+    .p-tag{font-size:8.5px;font-weight:700;color:var(--navy);background:var(--off);padding:3px 10px;border-radius:20px;letter-spacing:0.1em;}
+    .p-title{font-size:12px;font-weight:400;color:#333;line-height:1.75;letter-spacing:0.03em;margin-bottom:12px;}
+
+    .p-actions{display:flex;gap:8px;flex-wrap:wrap;}
+    .p-btn{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:6px;font-size:10px;font-weight:600;letter-spacing:0.08em;text-decoration:none;cursor:pointer;border:none;font-family:inherit;transition:all .2s;}
+    .p-btn-primary{background:var(--navy);color:#fff;}
+    .p-btn-outline{background:#fff;color:var(--navy);border:0.5px solid var(--navy);}
+
+    #lb{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:300;align-items:center;justify-content:center;flex-direction:column;gap:12px;}
+    #lb.open{display:flex;}
+    #lb-img{max-width:92vw;max-height:85vh;border-radius:8px;object-fit:contain;}
+    #lb-close{position:fixed;top:1.2rem;right:1.6rem;font-size:1.8rem;color:#fff;cursor:pointer;user-select:none;z-index:301;}
+    #lb-dl{padding:8px 20px;background:var(--navy);color:#fff;border-radius:6px;font-size:11px;font-weight:600;text-decoration:none;letter-spacing:.1em;}
+
+    .ach-list{display:flex;flex-direction:column;}
+    .ach-item{display:flex;align-items:baseline;gap:20px;padding:14px 0;border-bottom:0.5px solid var(--border);}
+    .ach-year{font-size:10px;font-weight:700;color:var(--navy);letter-spacing:0.1em;min-width:44px;}
+    .ach-text{font-size:12px;font-weight:300;color:#444;letter-spacing:0.04em;flex:1;}
+    .ach-tag{font-size:8.5px;font-weight:700;color:var(--navy);background:var(--off);padding:3px 10px;border-radius:20px;white-space:nowrap;}
+    .ach-del{cursor:pointer;font-size:16px;color:#ccc;padding:0 4px;background:none;border:none;line-height:1;font-family:inherit;}
+
+    .contact-section{padding:56px 48px;background:var(--navy);}
+    .contact-section .sec-label{color:rgba(255,255,255,0.45);}
+    .contact-section .sec-label::before{background:rgba(255,255,255,0.4);}
+    .contact-grid{display:flex;gap:48px;flex-wrap:wrap;margin-top:20px;}
+    .c-item{display:flex;flex-direction:column;gap:4px;}
+    .c-lbl{font-size:8px;font-weight:700;color:rgba(255,255,255,0.45);letter-spacing:0.26em;}
+    .c-val{font-size:13px;font-weight:300;color:#fff;letter-spacing:0.04em;}
+    .footer{padding:18px 48px;display:flex;justify-content:space-between;align-items:center;}
+    .footer-copy{font-size:10px;color:var(--slate);letter-spacing:0.08em;}
+    .footer-logo{font-size:11px;font-weight:700;color:var(--navy);letter-spacing:0.2em;}
+
+    @media(max-width:800px){
+      .hero{flex-direction:column-reverse;padding:40px 20px;text-align:center;}
+      .hero-content{display:flex;flex-direction:column;align-items:center;}
+      .hero-tag{justify-content:center;}
+      .hero-visual{flex:0 0 240px;width:240px;}
+      .hero-meta{justify-content:center;}
+      nav,.section,.contact-section,.footer{padding-left:20px;padding-right:20px;}
+      .hero-name{font-size:32px;}
+      .portfolio-grid{grid-template-columns:1fr;}
+    }
+  </style>
+</head>
+<body>
+
+<div id="lb">
+  <span id="lb-close" onclick="closeLB()">✕</span>
+  <img id="lb-img" src="" alt="">
+  <a id="lb-dl" href="" download>↓ ダウンロード</a>
+</div>
+
+<nav>
+  <div class="nav-logo">KATSU_CHEMISTRY</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#achievements">Achievements</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<section class="hero" id="about">
+  <svg class="hero-benz" width="340" height="340" viewBox="0 0 140 140" fill="none">
+    <polygon points="70,10 120,37.5 120,92.5 70,120 20,92.5 20,37.5" stroke="#002366" stroke-width="2.5" fill="none"/>
+    <polygon points="70,26 106,46 106,86 70,106 34,86 34,46" stroke="#002366" stroke-width="1.5" fill="none"/>
+    <line x1="70" y1="10" x2="70" y2="26" stroke="#002366" stroke-width="2"/>
+    <line x1="120" y1="37.5" x2="106" y2="46" stroke="#002366" stroke-width="2"/>
+    <line x1="120" y1="92.5" x2="106" y2="86" stroke="#002366" stroke-width="2"/>
+    <line x1="70" y1="120" x2="70" y2="106" stroke="#002366" stroke-width="2"/>
+    <line x1="20" y1="92.5" x2="34" y2="86" stroke="#002366" stroke-width="2"/>
+    <line x1="20" y1="37.5" x2="34" y2="46" stroke="#002366" stroke-width="2"/>
+  </svg>
+  
+  <div class="hero-content">
+    <div class="hero-tag">SCIENTIST CREATOR</div>
+    <div class="hero-name">岩田 佳津</div>
+    <div class="hero-name-en">IWATA KATSU</div>
+    <div class="hero-desc">化学の専門性とクリエイティブな視点を掛け合わせ、<br>好奇心を刺激し、創造的な時間をデザインする。</div>
+    <div class="hero-meta">
+      <div class="hero-meta-item"><div class="hero-meta-label">SPECIALTY</div><div class="hero-meta-val">化学</div></div>
+      <div class="hero-meta-item"><div class="hero-meta-label">X / TWITTER</div><div class="hero-meta-val">@katsu_chemistry</div></div>
+      <div class="hero-meta-item"><div class="hero-meta-label">EMAIL</div><div class="hero-meta-val">iwa1124ta@gmail.com</div></div>
+      <div class="hero-meta-item"><div class="hero-meta-label">GITHUB</div><div class="hero-meta-val">Jiajin1023</div></div>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <img src="画像生成/hf_20260423_083427_4987b64e-e214-4e5e-8212-3ff47dc93a33.jpg" alt="Katsu Avatar" class="hero-img">
+  </div>
+</section>
+
+<section class="section" id="portfolio">
+  <div class="sec-header">
+    <div class="sec-label">PORTFOLIO</div>
+    <div class="sec-count" id="p-count"></div>
+  </div>
+  <div class="portfolio-filters" id="filters"></div>
+  <div class="portfolio-grid" id="p-grid"></div>
+</section>
+
+<section class="section" id="achievements">
+  <div class="sec-header"><div class="sec-label">ACHIEVEMENTS & QUALIFICATIONS</div></div>
+  <div class="ach-list" id="ach-list"></div>
+  <div class="add-form">
+    <input name="year" placeholder="年" maxlength="4"/>
+    <input name="text" placeholder="資格・実績の内容"/>
+    <input name="tag" placeholder="タグ"/>
+    <button class="add-btn" onclick="addItem()">+ 追加</button>
+  </div>
+</section>
+
+<section class="contact-section" id="contact">
+  <div class="sec-label">CONTACT</div>
+  <div class="contact-grid">
+    <div class="c-item"><div class="c-lbl">EMAIL</div><div class="c-val">iwa1124ta@gmail.com</div></div>
+    <div class="c-item"><div class="c-lbl">X / TWITTER</div><div class="c-val">@katsu_chemistry</div></div>
+    <div class="c-item"><div class="c-lbl">GITHUB</div><div class="c-val">github.com/Jiajin1023</div></div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-copy">© 2026 Iwata Katsu. All rights reserved.</div>
+  <div class="footer-logo">KATSU_CHEMISTRY</div>
+</footer>
+
+<script>
+const portfolioItems = [
+  { year:"2026", title:"石鹸・キャンドル制作イベント企画・運営（化学実験×クラフト）", tag:"イベント", cat:"event", file:"資料/soap_candle_v2.pptx", thumb:null },
+  { year:"2026", title:"ヨウ素実験イベント企画・運営", tag:"イベント", cat:"event", file:"資料/iodine_experiment.pptx", thumb:"資料/hf_20260406_081926_cd565b48-72c2-4e39-8121-b99ad79b1170.jpg" },
+  { year:"2026", title:"化学イベントポスター制作", tag:"イベント", cat:"event", file:"資料/chemicalevent_poster.pptx", thumb:null },
+  { year:"2025", title:"具体⇄抽象で説明力を爆上げ", tag:"勉強会", cat:"slide", file:"資料/concrete_abstract_communication_20260110201526.pdf", thumb:null },
+  { year:"2025", title:"関東の紅葉登山2025", tag:"発表", cat:"slide", file:"資料/kanto_autumn_hiking_2025_20251020063126(2).pdf", thumb:null },
+  { year:"2025", title:"丹沢・鍋割山 登山スライド", tag:"発表", cat:"slide", file:"資料/鍋割山.pdf", thumb:null },
+  { year:"2025", title:"秩父で遊ぶ 登山スライド", tag:"発表", cat:"slide", file:"資料/秩父で遊ぶ.pdf", thumb:null },
+  { year:"2025", title:"災害時の心理学とデマ対策", tag:"発表", cat:"slide", file:"画像生成/A_dramatic_digital_artwork_set_in_a_snowy_Tohoku_d-1765273044727.jpg", thumb:"画像生成/A_dramatic_digital_artwork_set_in_a_snowy_Tohoku_d-1765273044727.jpg" },
+  { year:"2025", title:"語学学習アプリ KariLabo", tag:"開発", cat:"dev", link:"https://github.com/Jiajin1023/LanguageLearning_KariLabo" },
+  { year:"2025", title:"具体と抽象アプリ", tag:"開発", cat:"dev", link:"https://github.com/Jiajin1023/ConcreteAbstract" },
+  { year:"2025", title:"大陸移動（科学解説動画）", tag:"動画制作", cat:"video", video:"動画生成/大陸の動画作成.mp4", thumb:null },
+  { year:"2026", title:"新年のあいさつ動画", tag:"動画制作", cat:"video", video:"動画生成/kGx3LzeE.mp4", thumb:null },
+  { year:"2026", title:"火山噴火（科学ビジュアライゼーション）", tag:"動画制作", cat:"video", video:"動画生成/dzFcaVXq.mp4", thumb:"画像生成/hf_20260423_052749_d3f7e22f-7182-45f0-be0e-fea3bcbb750e.jpg" },
+  { year:"2026", title:"架空の厳冬期・雪山", tag:"動画制作", cat:"video", video:"動画生成/hf_20260423_052036_68f1ee9e-d17c-420f-a5e1-ecd4d3f43bda.mp4", thumb:"画像生成/hf_20260423_041458_af8c8ace-e454-40aa-897b-49ea9dda543e.jpg" },
+  { year:"2026", title:"隕石衝突（科学ビジュアライゼーション）", tag:"動画制作", cat:"video", video:"動画生成/1802451d-df25-4e25-acd4-9937f899090a.mp4", thumb:"画像生成/ジャイアントインパクトの写真.jpg" },
+  { year:"2025", title:"化学実験室×コーディング", tag:"画像生成", cat:"image", file:"画像生成/hf_20260423_070343_ceef3cf4-2935-4636-8d1f-17ecfa1054f9.jpg", thumb:"画像生成/hf_20260423_070343_ceef3cf4-2935-4636-8d1f-17ecfa1054f9.jpg" },
+  { year:"2025", title:"石鹸→ろうそく制作フローチャート", tag:"図解制作", cat:"image", file:"資料/image.webp", thumb:"資料/image.webp" },
+  { year:"2025", title:"酸で脂肪酸が遊離する反応模式図", tag:"図解制作", cat:"image", file:"資料/hf_20260406_075113_45f367c5-3d31-430b-b1c4-afcbb69a0c4f.jpg", thumb:"資料/hf_20260406_075113_45f367c5-3d31-430b-b1c4-afcbb69a0c4f.jpg" },
+  { year:"2025", title:"スノーボールアースビジュアル", tag:"画像生成", cat:"image", file:"画像生成/A_cosmic_view_of_the_Earth_during_the_Ice_Age_from-1767355861331.jpg", thumb:"画像生成/A_cosmic_view_of_the_Earth_during_the_Ice_Age_from-1767355861331.jpg" },
+  { year:"2025", title:"オーロラ×雪山背景画像", tag:"画像生成", cat:"image", file:"画像生成/hf_20260423_054504_ad2f5c1b-f397-4699-9572-cacc0517a6e2.jpg", thumb:"画像生成/hf_20260423_054504_ad2f5c1b-f397-4699-9572-cacc0517a6e2.jpg" },
+  { year:"2025", title:"4コマ漫画（ジム代活用）", tag:"画像生成", cat:"image", file:"画像生成/Anime-style_four-panel_comic_featuring_a_youthful_-1761038365357.jpg", thumb:"画像生成/Anime-style_four-panel_comic_featuring_a_youthful_-1761038365357.jpg" },
+  { year:"2026", title:"サムネイル制作各種", tag:"サムネイル", cat:"image", file:"画像生成/A_dramatic_digital_artwork_set_in_a_snowy_Tohoku_d-1765273044727.jpg", thumb:"画像生成/A_dramatic_digital_artwork_set_in_a_snowy_Tohoku_d-1765273044727.jpg" }
+];
+
+const catLabels={all:"すべて",event:"イベント",slide:"スライド",dev:"開発",video:"動画",image:"ビジュアル"};
+const catClass={event:"ph-event",slide:"ph-slide",dev:"ph-dev",video:"ph-video",image:"ph-image"};
+const catEmoji={event:"📅",slide:"📊",dev:"💻",video:"🎬",image:"🎨"};
+
+function extLabel(f){ if(!f)return''; const e=f.split('.').pop().toLowerCase(); return {pdf:'PDF',pptx:'PowerPoint',mp4:'MP4',png:'PNG',jpg:'JPG',webp:'WebP',jpeg:'JPEG'}[e]||e.toUpperCase(); }
+
+const dlSvg=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 15V3m0 12l-4-4m4 4l4-4"/><path d="M2 17v2a2 2 0 002 2h16a2 2 0 002-2v-2"/></svg>`;
+const extSvg=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>`;
+
+function cardHTML(p, i) {
+  let thumbHTML = '';
+  if (p.video) {
+    const poster = p.thumb ? `poster="${p.thumb}"` : '';
+    thumbHTML = `<div class="p-video-wrap" id="vw${i}"><video ${poster} preload="none" controls style="width:100%;height:100%;object-fit:cover;display:block;"><source src="${p.video}" type="video/mp4"></video></div>`;
+  } else if (p.thumb) {
+    thumbHTML = `<img class="p-thumb" src="${p.thumb}" alt="" loading="lazy" onerror="this.style.display='none'">`;
+  } else {
+    thumbHTML = `<div class="p-thumb-placeholder ${catClass[p.cat]}"><div class="ph-icon">${catEmoji[p.cat]}</div><div class="ph-label">${catLabels[p.cat]||''}</div></div>`;
+  }
+
+  let actions = '';
+  if (p.link) {
+    actions = `<a class="p-btn p-btn-primary" href="${p.link}" target="_blank">${extSvg} GitHub で見る</a>`;
+  } else if (p.file) {
+    const isImg = /\.(png|jpg|jpeg|webp|gif|avif)$/i.test(p.file);
+    if (isImg) {
+      actions = `<button class="p-btn p-btn-primary" onclick="openLB('${p.file}')">${extSvg} 画像を見る</button><a class="p-btn p-btn-outline" href="${p.file}" download>${dlSvg} 保存</a>`;
+    } else {
+      actions = `<a class="p-btn p-btn-primary" href="${p.file}" download>${dlSvg} ダウンロード（${extLabel(p.file)}）</a>`;
+    }
+  } else if (p.video) {
+    actions = `<a class="p-btn p-btn-outline" href="${p.video}" download>${dlSvg} 動画を保存</a>`;
+  }
+
+  return `<div class="p-card">${thumbHTML}<div class="p-body"><div class="p-card-top"><span class="p-year">${p.year}</span><span class="p-tag">${p.tag}</span></div><div class="p-title">${p.title}</div><div class="p-actions">${actions}</div></div></div>`;
+}
+
+let currentFilter = "all";
+function renderFilters() { document.getElementById("filters").innerHTML = Object.entries(catLabels).map(([k,v]) => `<button class="filter-btn${k===currentFilter?' active':''}" onclick="setFilter('${k}')">${v}</button>`).join(''); }
+function renderGrid() { const filtered = currentFilter==="all" ? portfolioItems : portfolioItems.filter(p=>p.cat===currentFilter); document.getElementById("p-count").textContent = filtered.length + " 件"; document.getElementById("p-grid").innerHTML = filtered.map((p,i) => cardHTML(p, i)).join(''); }
+function setFilter(cat){ currentFilter=cat; renderFilters(); renderGrid(); }
+function openLB(src) { document.getElementById('lb-img').src = src; document.getElementById('lb-dl').href = src; document.getElementById('lb-dl').download = src.split('/').pop(); document.getElementById('lb').classList.add('open'); }
+function closeLB() { document.getElementById('lb').classList.remove('open'); }
+const ACH_KEY = 'katsu_achievements';
+let achItems = (()=>{ try{ const s=localStorage.getItem(ACH_KEY); return s?JSON.parse(s):[]; }catch(e){ return[]; } })();
+function renderAch() { const list = document.getElementById('ach-list'); list.innerHTML = achItems.length===0 ? `<p style="font-size:12px;color:var(--slate);padding:16px 0;">まだ登録されていません。</p>` : achItems.map((item,i) => `<div class="ach-item"><span class="ach-year">${item.year}</span><span class="ach-text">${item.text}</span>${item.tag?`<span class="ach-tag">${item.tag}</span>`:''}<button class="ach-del" onclick="removeItem(${i})">×</button></div>`).join(''); }
+function addItem() { const year=document.querySelector('input[name="year"]').value.trim(); const text=document.querySelector('input[name="text"]').value.trim(); const tag=document.querySelector('input[name="tag"]').value.trim(); if(!text)return; achItems.push({year,text,tag}); achItems.sort((a,b)=>(b.year||'').localeCompare(a.year||'')); localStorage.setItem(ACH_KEY,JSON.stringify(achItems)); document.querySelectorAll('.add-form input').forEach(i=>i.value=''); renderAch(); }
+function removeItem(i){ if(!confirm('削除しますか？'))return; achItems.splice(i,1); localStorage.setItem(ACH_KEY,JSON.stringify(achItems)); renderAch(); }
+
+renderFilters(); renderGrid(); renderAch();
+</script>
+</body>
+</html>
